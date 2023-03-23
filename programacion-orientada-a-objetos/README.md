@@ -9,8 +9,10 @@ Acerca de
 
 Prerequisites
 -----------
+```
 -PHP (5.4 en adelante)
 -MySQL Server (5.1 en adelante)
+```
 
 Relacion Temario<->Archivos
 -----------

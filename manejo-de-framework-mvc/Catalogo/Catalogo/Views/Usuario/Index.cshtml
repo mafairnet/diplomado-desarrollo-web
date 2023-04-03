@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Catalogo ed usuario</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tablaAlumnos").DataTable();
+        });
+
+        function addUser(idUser) {
+            //Hacemos una redireccion a 
+            document.location = "/Usuario/Add/";
+        }
+
+        function editUser(idUser) {
+            //Hacemos una redireccion a 
+            document.location = "/Usuario/Edit/" + idUser;
+        }
+
+        function deleteUser(idUser) {
+            console.log(idUser);
+            document.location = "/Usuario/Delete/" + idUser;
+        }
+    </script>
+</head>
+<body>
+    <h1>Administracion de Usuarios</h1>
+    <!--foreach (var item in ViewData["usuariosActuales"] as List<string>)
+    {
+        <li>item</li>
+    }-->
+    <br/>
+    <div class="row">
+        <div class="col-md-9 bg-light text-right">
+        </div>
+        <div class="col-md-3 bg-light text-right">
+            <input type="button" value="Agregar Usuario" onclick="addUser()" />
+        </div>
+        </div>
+        <br />
+
+        <table id="tablaAlumnos" class="display" style="width:90%;margin-left:auto;scroll-margin-right:auto;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Usuario</th>
+                    <th>Controles</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var usuario in ViewData["usuariosActuales"] as List<Catalogo.Models.Usuario>)
+                {
+                    <tr>
+                        <td>@usuario.ID</td>
+                        <td>@usuario.FirstName</td>
+                        <td>@usuario.SecondName</td>
+                        <td>@usuario.Username</td>
+                        <td>
+                            <input type="button" value="Editar" onclick="editUser('@usuario.ID')" />
+                            <input type="button" value="Borrar" onclick="deleteUser('@usuario.ID')" />
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+</body>
+</html>

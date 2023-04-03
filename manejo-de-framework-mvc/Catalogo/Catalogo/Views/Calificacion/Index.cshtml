@@ -1,0 +1,13 @@
+﻿<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">@ViewBag.Title.</h1>
+        <!--<p class="lead">@ViewBag.calificaciones</p>-->
+        @foreach (var item in ViewData["calificaciones"] as List<string>) { 
+            <li>@item</li>
+        }
+
+    </section>
+
+
+    </div>
+</main>

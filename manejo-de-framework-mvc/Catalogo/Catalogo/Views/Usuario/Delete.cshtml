@@ -1,0 +1,68 @@
+﻿@model Catalogo.Models.Usuario
+@{
+    var usuario = ViewData["usuario"] as Catalogo.Models.Usuario;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Catalogo ed usuario</title>
+    <script type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <h1>Edicion de Usuario</h1>
+    @using (Html.BeginForm()) { 
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Usuario: @usuario.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => usuario.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => usuario.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => usuario.FirstName, new { htmlAtributes = new { @class = "form-control disabledClass" } })
+            @Html.ValidationMessageFor(model => usuario.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => usuario.SecondName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => usuario.SecondName, new { htmlAtributes = new { @class = "form-control disabledClass" } })
+            @Html.ValidationMessageFor(model => usuario.SecondName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => usuario.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => usuario.Username, new { htmlAtributes = new { @class = "form-control disabledClass" } })
+            @Html.ValidationMessageFor(model => usuario.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <h4>¿Seguro que desea borar el usuario?</h4>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Borrar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+         //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }
+
+</body>
+</html>

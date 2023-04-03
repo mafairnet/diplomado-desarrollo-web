@@ -1,0 +1,8 @@
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\bin\Debug\AplicacionConsola.exe.config
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\bin\Debug\AplicacionConsola.exe
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\bin\Debug\AplicacionConsola.pdb
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\obj\Debug\AplicacionConsola.csproj.AssemblyReference.cache
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\obj\Debug\AplicacionConsola.csproj.SuggestedBindingRedirects.cache
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\obj\Debug\AplicacionConsola.csproj.CoreCompileInputs.cache
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\obj\Debug\AplicacionConsola.exe
+C:\Users\JOHNDOE\source\repos\AplicacionConsola\AplicacionConsola\obj\Debug\AplicacionConsola.pdb

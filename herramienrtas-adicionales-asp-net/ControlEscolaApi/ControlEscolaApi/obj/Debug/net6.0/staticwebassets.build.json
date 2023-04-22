@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "PVJkgy8AKy3PRXac0apn18PNMiaKpF5DI5dwtKYozgg=",
+  "Source": "ControlEscolaApi",
+  "BasePath": "_content/ControlEscolaApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

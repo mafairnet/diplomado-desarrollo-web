@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Catalogo de Paises</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tablaPaises").DataTable();
+        });
+
+        function agregarPais() {
+            //Hacemos una redireccion a
+            document.location = "/Pais/Add/";
+        }
+
+        function editarPais(idPais) {
+            //Hacemos una redireccion a
+            document.location = "/Pais/Edit/" + idPais;
+        }
+
+        function borrarPais(idPais) {
+            console.log(idPais);
+            document.location = "/Pais/Delete/" + idPais;
+        }
+    </script>
+</head>
+<body>
+    <h1>Administración de Paises</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-9 bg-light text-right">
+        </div>
+        <div class="col-md-3 bg-light text-right">
+            <input type="button" value="Agregar Pais" onclick="agregarPais()" />
+        </div>
+    </div>
+    <br />
+
+    <table id="tablaPaises" class="display" style="width:90%;margin-left:auto;scroll-margin-right:auto;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Controles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pais in ViewData["catalogoPaises"] as List<Control_Escolar.Models.Pais>)
+            {
+                <tr>
+                    <td>@pais.ID</td>
+                    <td>@pais.Nombre</td>
+                    <td>
+                        <input type="button" value="Editar" onclick="editarPais('@pais.ID')" />
+                        <input type="button" value="Borrar" onclick="borrarPais('@pais.ID')" />
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</body>
+</html>

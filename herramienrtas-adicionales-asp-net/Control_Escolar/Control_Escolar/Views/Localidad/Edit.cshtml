@@ -1,0 +1,70 @@
+﻿@model Control_Escolar.Models.Localidad
+@{
+    var localidad = ViewData["localidad"] as Control_Escolar.Models.Localidad;
+}
+
+<script type="text/javascript">
+
+    function setMunicipio() {
+        var idMunicipio = $('select[name="Municipio.ID"]').val();
+        console.log("Municipio Seleccionado: " + idMunicipio);
+        $("#localidad_IdMunicipio").val(idMunicipio);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Municipio");
+        var idMunicipio = $("#localidad_IdMunicipio").val();
+        $('select[name="Municipio.ID"]').val(idMunicipio);
+
+    });
+</script>
+
+    <h1>Modificar Localidad</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Localidad: @localidad.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => localidad.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => localidad.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => localidad.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => localidad.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+    <!--<div class="form-group">
+        @Html.LabelFor(model => localidad.IdMunicipio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => localidad.IdMunicipio, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => localidad.IdMunicipio, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => localidad.IdMunicipio)
+
+    <div class="form-group">
+        @Html.LabelFor(model => localidad.Municipio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Municipio.ID, ViewBag.municipios as SelectList, new { @class = "form-control", @onChange = "setMunicipio()" })
+            @Html.ValidationMessageFor(model => localidad.Municipio.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Modificar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

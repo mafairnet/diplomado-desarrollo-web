@@ -1,0 +1,72 @@
+﻿@model Control_Escolar.Models.Municipio
+@{
+    var municipio = ViewData["municipio"] as Control_Escolar.Models.Municipio;
+}
+
+<script type="text/javascript">
+
+    function setEstado() {
+        var idEstado = $('select[name="Estado.ID"]').val();
+        console.log("Estado Seleccionado: " + idEstado);
+        $("#municipio_IdEstado").val(idEstado);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Estado");
+        var idEstado = $("#municipio_IdEstado").val();
+        $('select[name="Estado.ID"]').val(idEstado);
+
+    });
+</script>
+
+    <h1>Borrar Municipio</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Municipio: @municipio.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => municipio.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => municipio.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => municipio.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => municipio.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+    <!--<div class="form-group">
+        @Html.LabelFor(model => municipio.IdEstado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => municipio.IdEstado, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => municipio.IdEstado, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => municipio.IdEstado)
+
+    <div class="form-group">
+        @Html.LabelFor(model => municipio.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Estado.ID, ViewBag.estados as SelectList, new { @class = "form-control", @onChange = "setEstado()" })
+            @Html.ValidationMessageFor(model => municipio.Estado.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <h4>¿Seguro que desea borrar el municipio?</h4>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Borrar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

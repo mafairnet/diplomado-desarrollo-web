@@ -1,0 +1,88 @@
+﻿@model Control_Escolar.Models.Bitacora
+@{
+    var bitacora = ViewData["bitacora"] as Control_Escolar.Models.Bitacora;
+}
+
+<script type="text/javascript">
+
+    function setAccion() {
+        var idAccion = $('select[name="Accion.ID"]').val();
+        console.log("Accion Seleccionado: " + idAccion);
+        $("#bitacora_IdAccion").val(idAccion);
+    }
+
+    function setUsuario() {
+        var idUsuario = $('select[name="Usuario.ID"]').val();
+        console.log("Usuario Seleccionado: " + idUsuario);
+        $("#bitacora_IdUsuario").val(idUsuario);
+    }
+</script>
+
+    <h1>Agregar Bitacora</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Agregar Bitacora: @bitacora.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => bitacora.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => bitacora.TimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => bitacora.TimeStamp, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => bitacora.TimeStamp, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => bitacora.IdAccion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => bitacora.IdAccion, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => bitacora.IdAccion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        -->
+
+    @Html.HiddenFor(model => bitacora.IdAccion)
+
+    <div class="form-group">
+        @Html.LabelFor(model => bitacora.Accion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Accion.ID, ViewBag.acciones as SelectList, new { @class = "form-control", @onChange = "setAccion()" })
+            @Html.ValidationMessageFor(model => bitacora.Accion.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => bitacora.IdUsuario)
+
+    <div class="form-group">
+        @Html.LabelFor(model => bitacora.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Usuario.ID, ViewBag.acciones as SelectList, new { @class = "form-control", @onChange = "setUsuario()" })
+            @Html.ValidationMessageFor(model => bitacora.Usuario.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => bitacora.Data, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => bitacora.Data, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => bitacora.Data, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

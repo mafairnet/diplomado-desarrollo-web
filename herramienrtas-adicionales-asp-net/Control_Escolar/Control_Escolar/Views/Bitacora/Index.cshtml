@@ -1,0 +1,65 @@
+﻿
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tablaBitacoras").DataTable();
+        });
+
+        function agregarBitacora() {
+            //Hacemos una redireccion a
+            document.location = "/Bitacora/Add/";
+        }
+
+        function editarBitacora(idBitacora) {
+            //Hacemos una redireccion a
+            document.location = "/Bitacora/Edit/" + idBitacora;
+        }
+
+        function borrarBitacora(idBitacora) {
+            console.log(idBitacora);
+            document.location = "/Bitacora/Delete/" + idBitacora;
+        }
+    </script>
+    <h1>Administración de Bitacoras</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-6 bg-light text-right">
+        </div>
+        <div class="col-md-2 bg-light text-right">
+            <input type="button" value="Agregar Bitacora" onclick="agregarBitacora()" />
+        </div>
+        <div class="col-md-4 bg-light text-right">
+            @Html.Partial("~/Views/Shared/Buscador.cshtml")
+        </div>
+    </div>
+    <br />
+
+    <table id="tablaBitacoras" class="display" style="width:90%;margin-left:auto;scroll-margin-right:auto;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Timestamp</th>
+                <th>Accion</th>
+                <th>Usuario</th>
+                <th>Dta</th>
+                <th>Controles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bitacora in ViewData["catalogoBitacoras"] as List<Control_Escolar.Models.Bitacora>)
+            {
+                <tr>
+                    <td>@bitacora.ID</td>
+                    <td>@bitacora.TimeStamp</td>
+                    <td>@bitacora.Accion.Nombre</td>
+                    <td>@bitacora.Usuario.Correo</td>
+                    <td>@bitacora.Data</td>
+                    <td>
+                        <input type="button" value="Editar" onclick="editarBitacora('@bitacora.ID')" />
+                        <input type="button" value="Borrar" onclick="borrarBitacora('@bitacora.ID')" />
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>

@@ -1,0 +1,89 @@
+﻿@model Control_Escolar.Models.Escuela
+@{
+    var escuela = ViewData["escuela"] as Control_Escolar.Models.Escuela;
+}
+
+<script type="text/javascript">
+
+    function setStatus() {
+        var idStatus = $('select[name="Status.ID"]').val();
+        console.log("Status Seleccionado: " + idStatus);
+        $("#escuela_IdStatus").val(idStatus);
+    }
+
+    function setUbicacion() {
+        var idUbicacion = $('select[name="Ubicacion.ID"]').val();
+        console.log("Ubicacion Seleccionado: " + idUbicacion);
+        $("#escuela_IdUbicacion").val(idUbicacion);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Status");
+        var idStatus = $("#escuela_IdStatus").val();
+        $('select[name="Status.ID"]').val(idStatus);
+
+        console.log("Modificado Ubicacion");
+        var idUbicacion = $("#escuela_IdUbicacion").val();
+        $('select[name="Ubicacion.ID"]').val(idUbicacion);
+
+    });
+</script>
+
+    <h1>Modificar Escuela</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Escuela: @escuela.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => escuela.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => escuela.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => escuela.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => escuela.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => escuela.IdUbicacion)
+
+    <div class="form-group">
+        @Html.LabelFor(model => escuela.Ubicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Ubicacion.ID, ViewBag.ubicaciones as SelectList, new { @class = "form-control", @onChange = "setUbicacion()" })
+            @Html.ValidationMessageFor(model => escuela.Ubicacion.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => escuela.IdStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => escuela.IdStatus, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => escuela.IdStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => escuela.IdStatus)
+
+    <div class="form-group">
+        @Html.LabelFor(model => escuela.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Status.ID, ViewBag.statuses as SelectList, new { @class = "form-control", @onChange = "setStatus()" })
+            @Html.ValidationMessageFor(model => escuela.Status.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Modificar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

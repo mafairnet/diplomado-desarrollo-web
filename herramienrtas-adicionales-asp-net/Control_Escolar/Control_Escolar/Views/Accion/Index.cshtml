@@ -1,0 +1,59 @@
+﻿
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tablaAccions").DataTable();
+        });
+
+        function agregarAccion() {
+            //Hacemos una redireccion a
+            document.location = "/Accion/Add/";
+        }
+
+        function editarAccion(idAccion) {
+            //Hacemos una redireccion a
+            document.location = "/Accion/Edit/" + idAccion;
+        }
+
+        function borrarAccion(idAccion) {
+            console.log(idAccion);
+            document.location = "/Accion/Delete/" + idAccion;
+        }
+    </script>
+    <h1>Administración de Accions</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-6 bg-light text-right">
+        </div>
+        <div class="col-md-2 bg-light text-right">
+            <input type="button" value="Agregar Accion" onclick="agregarAccion()" />
+        </div>
+        <div class="col-md-4 bg-light text-right">
+            @Html.Partial("~/Views/Shared/Buscador.cshtml")
+        </div>
+    </div>
+    <br />
+
+    <table id="tablaAccions" class="display" style="width:90%;margin-left:auto;scroll-margin-right:auto;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Controles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var accion in ViewData["catalogoAcciones"] as List<Control_Escolar.Models.Accion>)
+            {
+                <tr>
+                    <td>@accion.ID</td>
+                    <td>@accion.Nombre</td>
+                    <td>
+                        <input type="button" value="Editar" onclick="editarAccion('@accion.ID')" />
+                        <input type="button" value="Borrar" onclick="borrarAccion('@accion.ID')" />
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>

@@ -1,0 +1,34 @@
+﻿@model Control_Escolar.Models.Status
+@{
+    var status = ViewData["status"] as Control_Escolar.Models.Status;
+}
+    <h1>Agregar Status</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Agregar Status: @status.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => status.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => status.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => status.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => status.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

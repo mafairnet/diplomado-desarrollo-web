@@ -1,0 +1,9 @@
+﻿
+@using (Html.BeginForm("BuscarElemento", "Buscador", FormMethod.Post))
+{ 
+    <p>
+        Buscar:
+        @Html.TextBox("dato")
+        <input type="submit" value="Buscar..."/>
+    </p>
+}

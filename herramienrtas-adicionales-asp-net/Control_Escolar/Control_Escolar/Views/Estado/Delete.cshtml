@@ -1,0 +1,71 @@
+﻿@model Control_Escolar.Models.Estado
+@{
+    var estado = ViewData["estado"] as Control_Escolar.Models.Estado;
+}
+
+<script type="text/javascript">
+
+    function setPais() {
+        var idPais = $('select[name="Pais.ID"]').val();
+        console.log("Pais Seleccionado: " + idPais);
+        $("#estado_IdPais").val(idPais);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Pais");
+        var idPais = $("#estado_IdPais").val();
+        $('select[name="Pais.ID"]').val(idPais);
+
+    });
+</script>
+
+    <h1>Borrar Estado</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Estado: @estado.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => estado.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => estado.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => estado.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => estado.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => estado.IdPais, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => estado.IdPais, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => estado.IdPais, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => estado.IdPais)
+
+    <div class="form-group">
+        @Html.LabelFor(model => estado.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Pais.ID, ViewBag.paises as SelectList, new { @class = "form-control", @onChange = "setPais()" })
+            @Html.ValidationMessageFor(model => estado.Pais.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <h4>¿Seguro que desea borrar el estado?</h4>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Borrar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

@@ -1,0 +1,70 @@
+﻿@model Control_Escolar.Models.Calle
+@{
+    var calle = ViewData["calle"] as Control_Escolar.Models.Calle;
+}
+
+<script type="text/javascript">
+
+    function setLocalidad() {
+        var idLocalidad = $('select[name="Localidad.ID"]').val();
+        console.log("Localidad Seleccionado: " + idLocalidad);
+        $("#calle_IdLocalidad").val(idLocalidad);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Localidad");
+        var idLocalidad = $("#calle_IdLocalidad").val();
+        $('select[name="Localidad.ID"]').val(idLocalidad);
+
+    });
+</script>
+
+    <h1>Modificar Calle</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Calle: @calle.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => calle.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => calle.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => calle.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => calle.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => calle.IdLocalidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => calle.IdLocalidad, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => calle.IdLocalidad, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => calle.IdLocalidad)
+
+    <div class="form-group">
+        @Html.LabelFor(model => calle.Localidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Localidad.ID, ViewBag.localidades as SelectList, new { @class = "form-control", @onChange = "setLocalidad()" })
+            @Html.ValidationMessageFor(model => calle.Localidad.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Modificar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

@@ -1,0 +1,70 @@
+﻿@model Control_Escolar.Models.Carrera
+@{
+    var carrera = ViewData["carrera"] as Control_Escolar.Models.Carrera;
+}
+
+<script type="text/javascript">
+
+    function setStatus() {
+        var idStatus = $('select[name="Status.ID"]').val();
+        console.log("Status Seleccionado: " + idStatus);
+        $("#carrera_IdStatus").val(idStatus);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Status");
+        var idStatus = $("#carrera_IdStatus").val();
+        $('select[name="Status.ID"]').val(idStatus);
+
+    });
+</script>
+
+    <h1>Modificar Carrera</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Carrera: @carrera.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => carrera.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => carrera.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => carrera.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => carrera.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => carrera.IdStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => carrera.IdStatus, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => carrera.IdStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => carrera.IdStatus)
+
+    <div class="form-group">
+        @Html.LabelFor(model => carrera.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Status.ID, ViewBag.statuses as SelectList, new { @class = "form-control", @onChange = "setStatus()" })
+            @Html.ValidationMessageFor(model => carrera.Status.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Modificar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

@@ -1,4 +1,5 @@
-﻿using ControlEscolaApi.Model;
+﻿using ControlEscolaApi.Authorization;
+using ControlEscolaApi.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,14 +10,15 @@ namespace ControlEscolaApi.Controllers
     [ApiController]
     public class PaisController : ControllerBase
     {
-        private readonly PaisContext _dbContext;
-        public PaisController(PaisContext dbContext) {
+        private readonly CatalogoEscolarContext _dbContext;
+        public PaisController(CatalogoEscolarContext dbContext) {
             _dbContext = dbContext;
         }
 
         //Get: api/Paises
+        [ApiKey]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Pais>>> GetPaises() {
+        public async Task<ActionResult<IEnumerable<Pais>>> GetPaises([FromHeader(Name = "X-API-Key")] string apiKey) {
             if (_dbContext.Pais == null) {
                 return NotFound();
             }
@@ -24,8 +26,9 @@ namespace ControlEscolaApi.Controllers
         }
 
         //GET: api/Pais/{id}
+        [ApiKey]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pais>> GetPais(int id)
+        public async Task<ActionResult<Pais>> GetPais([FromHeader(Name = "X-API-Key")] string apiKey, int id)
         {
             if (_dbContext.Pais == null)
             {
@@ -41,8 +44,9 @@ namespace ControlEscolaApi.Controllers
         }
 
         //POST: api/Pais
+        [ApiKey]
         [HttpPost]
-        public async Task<ActionResult<Pais>> PostPais(Pais pais) {
+        public async Task<ActionResult<Pais>> PostPais([FromHeader(Name = "X-API-Key")] string apiKey, Pais pais) {
             _dbContext.Pais.Add(pais);
             await _dbContext.SaveChangesAsync();
             var paisGuardado = await _dbContext.Pais.FindAsync(pais.ID);
@@ -51,8 +55,9 @@ namespace ControlEscolaApi.Controllers
         }
 
         //PUT: app/Pais/{id}
+        [ApiKey]
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutPais(int id, Pais pais) {
+        public async Task<ActionResult> PutPais([FromHeader(Name = "X-API-Key")] string apiKey, int id, Pais pais) {
             if (id != pais.ID) {
                 return BadRequest();
             }
@@ -76,8 +81,9 @@ namespace ControlEscolaApi.Controllers
         }
 
         //DELETE: api/Pais/{id}
+        [ApiKey]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePais(int id) {
+        public async Task<IActionResult> DeletePais([FromHeader(Name = "X-API-Key")] string apiKey, int id) {
             if (_dbContext.Pais == null) {
                 return NotFound();
             }

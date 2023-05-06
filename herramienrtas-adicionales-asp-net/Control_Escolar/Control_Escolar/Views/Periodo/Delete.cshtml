@@ -1,0 +1,87 @@
+﻿@model Control_Escolar.Models.Periodo
+@{
+    var periodo = ViewData["periodo"] as Control_Escolar.Models.Periodo;
+}
+
+<script type="text/javascript">
+
+    function setStatus() {
+        var idStatus = $('select[name="Status.ID"]').val();
+        console.log("Status Seleccionado: " + idStatus);
+        $("#periodo_IdStatus").val(idStatus);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Status");
+        var idStatus = $("#periodo_IdStatus").val();
+        $('select[name="Status.ID"]').val(idStatus);
+
+    });
+</script>
+
+    <h1>Borrar Periodo</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Detalles de Periodo: @periodo.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => periodo.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => periodo.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => periodo.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => periodo.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => periodo.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => periodo.FechaInicio, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => periodo.FechaInicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => periodo.FechaFin, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => periodo.FechaFin, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => periodo.FechaFin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => periodo.IdStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => periodo.IdStatus, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => periodo.IdStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>-->
+
+    @Html.HiddenFor(model => periodo.IdStatus)
+
+    <div class="form-group">
+        @Html.LabelFor(model => periodo.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Status.ID, ViewBag.statuses as SelectList, new { @class = "form-control", @onChange = "setStatus()" })
+            @Html.ValidationMessageFor(model => periodo.Status.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <h4>¿Seguro que desea borrar el periodo?</h4>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Borrar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

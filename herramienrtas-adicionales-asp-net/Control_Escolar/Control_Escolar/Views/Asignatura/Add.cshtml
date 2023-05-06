@@ -1,0 +1,64 @@
+﻿@model Control_Escolar.Models.Asignatura
+@{
+    var asignatura = ViewData["asignatura"] as Control_Escolar.Models.Asignatura;
+}
+
+<script type="text/javascript">
+
+    function setStatus() {
+        var idStatus = $('select[name="Status.ID"]').val();
+        console.log("Status Seleccionado: " + idStatus);
+        $("#asignatura_IdStatus").val(idStatus);
+    }
+</script>
+
+    <h1>Agregar Asignatura</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Agregar Asignatura: @asignatura.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => asignatura.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => asignatura.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => asignatura.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => asignatura.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+    <!--<div class="form-group">
+        @Html.LabelFor(model => asignatura.IdStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => asignatura.IdStatus, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => asignatura.IdStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        -->
+
+    @Html.HiddenFor(model => asignatura.IdStatus)
+
+    <div class="form-group">
+        @Html.LabelFor(model => asignatura.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Status.ID, ViewBag.statuses as SelectList, new { @class = "form-control", @onChange = "setStatus()" })
+            @Html.ValidationMessageFor(model => asignatura.Status.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

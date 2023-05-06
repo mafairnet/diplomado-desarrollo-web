@@ -1,0 +1,80 @@
+﻿@model Control_Escolar.Models.Curso
+@{
+    var curso = ViewData["curso"] as Control_Escolar.Models.Curso;
+}
+
+<script type="text/javascript">
+
+    function setPeriodo() {
+        var idPeriodo = $('select[name="Periodo.ID"]').val();
+        console.log("Periodo Seleccionado: " + idPeriodo);
+        $("#curso_IdPeriodo").val(idPeriodo);
+    }
+
+    function setAsignatura() {
+        var idAsignatura = $('select[name="Asignatura.ID"]').val();
+        console.log("Asignatura Seleccionado: " + idAsignatura);
+        $("#curso_IdAsignatura").val(idAsignatura);
+    }
+</script>
+
+    <h1>Agregar Curso</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Agregar Curso: @curso.ID</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => curso.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => curso.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => curso.Nombre, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => curso.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--<div class="form-group">
+        @Html.LabelFor(model => curso.IdPeriodo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => curso.IdPeriodo, new { htmlAtributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => curso.IdPeriodo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        -->
+
+    @Html.HiddenFor(model => curso.IdPeriodo)
+
+    <div class="form-group">
+        @Html.LabelFor(model => curso.Periodo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Periodo.ID, ViewBag.periodos as SelectList, new { @class = "form-control", @onChange = "setPeriodo()" })
+            @Html.ValidationMessageFor(model => curso.Periodo.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => curso.IdAsignatura)
+
+    <div class="form-group">
+        @Html.LabelFor(model => curso.Asignatura, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Asignatura.ID, ViewBag.asignatura as SelectList, new { @class = "form-control", @onChange = "setAsignatura()" })
+            @Html.ValidationMessageFor(model => curso.Asignatura.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

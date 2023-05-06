@@ -1,4 +1,5 @@
-﻿using ControlEscolaApi.Model;
+﻿using ControlEscolaApi.Authorization;
+using ControlEscolaApi.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,15 +11,16 @@ namespace ControlEscolaApi.Controllers
     [ApiController]
     public class EstadoController : ControllerBase
     {
-        private readonly EstadoContext _dbContext;
-        public EstadoController(EstadoContext dbContext)
+        private readonly CatalogoEscolarContext _dbContext;
+        public EstadoController(CatalogoEscolarContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        //Get: api/Paises
+        //Get: api/Estado
+        [ApiKey]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Estado>>> GetEstados()
+        public async Task<ActionResult<IEnumerable<Estado>>> GetEstados([FromHeader(Name = "X-API-Key")] string apiKey)
         {
             if (_dbContext.Estado == null)
             {
@@ -27,9 +29,10 @@ namespace ControlEscolaApi.Controllers
             return await _dbContext.Estado.ToListAsync();
         }
 
-        //GET: api/Pais/{id}
+        //GET: api/Estado/{id}
+        [ApiKey]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Estado>> GetEstado(int id)
+        public async Task<ActionResult<Estado>> GetEstado([FromHeader(Name = "X-API-Key")] string apiKey, int id)
         {
             if (_dbContext.Estado == null)
             {
@@ -45,20 +48,22 @@ namespace ControlEscolaApi.Controllers
             return estado;
         }
 
-        //POST: api/Pais
+        //POST: api/Estado
+        [ApiKey]
         [HttpPost]
-        public async Task<ActionResult<Estado>> PostEstado(Estado estado)
+        public async Task<ActionResult<Estado>> PostEstado([FromHeader(Name = "X-API-Key")] string apiKey, Estado estado)
         {
             _dbContext.Estado.Add(estado);
             await _dbContext.SaveChangesAsync();
             var estadoGuardado = await _dbContext.Estado.FindAsync(estado.ID);
             return estadoGuardado;
-            //return CreatedAtAction(nameof(GetPais), new { id = pais.ID, pais });
+            //return CreatedAtAction(nameof(GetEstado), new { id = pais.ID, pais });
         }
 
-        //PUT: app/Pais/{id}
+        //PUT: app/Estado/{id}
+        [ApiKey]
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutPais(int id, Estado estado)
+        public async Task<ActionResult> PutEstado([FromHeader(Name = "X-API-Key")] string apiKey, int id, Estado estado)
         {
             if (id != estado.ID)
             {
@@ -85,9 +90,10 @@ namespace ControlEscolaApi.Controllers
             return NoContent();
         }
 
-        //DELETE: api/Pais/{id}
+        //DELETE: api/Estado/{id}
+        [ApiKey]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePais(int id)
+        public async Task<IActionResult> DeleteEstado([FromHeader(Name = "X-API-Key")] string apiKey, int id)
         {
             if (_dbContext.Estado == null)
             {

@@ -25,6 +25,12 @@ namespace Control_Escolar
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new Bundle("~/bundles/datatable").Include(
+                      "~/Scripts/jquery.dataTables.min.js"));
+
+            bundles.Add(new StyleBundle("~/styles/datatable").Include(
+                      "~/Content/jquery.dataTables.min.css"));
         }
     }
 }

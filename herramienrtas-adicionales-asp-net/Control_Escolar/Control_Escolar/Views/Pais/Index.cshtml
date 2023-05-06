@@ -1,8 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Catalogo de Paises</title>
+﻿
     <script type="text/javascript">
         $(document).ready(function () {
             $("#tablaPaises").DataTable();
@@ -23,15 +19,16 @@
             document.location = "/Pais/Delete/" + idPais;
         }
     </script>
-</head>
-<body>
     <h1>Administración de Paises</h1>
     <br />
     <div class="row">
-        <div class="col-md-9 bg-light text-right">
+        <div class="col-md-6 bg-light text-right">
         </div>
-        <div class="col-md-3 bg-light text-right">
+        <div class="col-md-2 bg-light text-right">
             <input type="button" value="Agregar Pais" onclick="agregarPais()" />
+        </div>
+        <div class="col-md-4 bg-light text-right">
+            @Html.Partial("~/Views/Shared/Buscador.cshtml")
         </div>
     </div>
     <br />
@@ -60,5 +57,3 @@
 
         </tbody>
     </table>
-</body>
-</html>

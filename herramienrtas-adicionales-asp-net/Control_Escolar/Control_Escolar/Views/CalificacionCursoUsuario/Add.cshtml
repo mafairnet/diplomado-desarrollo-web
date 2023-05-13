@@ -1,0 +1,51 @@
+﻿@model Control_Escolar.Models.CalificacionCursoUsuario
+@{
+    var usuario = ViewData["usuario"] as Control_Escolar.Models.Usuario;
+    var curso = ViewData["curso"] as Control_Escolar.Models.Curso;
+
+    var calificacionCursoUsuario = ViewData["calificacionCursoUsuario"] as Control_Escolar.Models.CalificacionCursoUsuario;
+}
+
+<script type="text/javascript">
+
+    function setCalificacion() {
+        var idCalificacion = $('select[name="calificacionCursoUsuario.IdCalificacion"]').val();
+        console.log("Calificacion Seleccionado: " + idCalificacion);
+        $("#calificacionCursoUsuario_IdCalificacion").val(idCalificacion);
+    }
+</script>
+
+    <h1>Agregar Calificacion</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Curso: @curso.ID, @curso.Nombre</h4>
+    <h4>Usuario: @usuario.ID, @usuario.Correo</h4>
+    <hr />
+    @Html.HiddenFor(model => calificacionCursoUsuario.IdUsuario)
+
+    @Html.HiddenFor(model => calificacionCursoUsuario.IdCurso)
+
+    @Html.HiddenFor(model => calificacionCursoUsuario.IdCalificacion)
+
+    <div class="form-group">
+        @Html.LabelFor(model => calificacionCursoUsuario.IdCalificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => calificacionCursoUsuario.IdCalificacion, ViewBag.calificaciones as SelectList, new { @class = "form-control", @onChange = "setCalificacion()" })
+            @Html.ValidationMessageFor(model => calificacionCursoUsuario.IdCalificacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

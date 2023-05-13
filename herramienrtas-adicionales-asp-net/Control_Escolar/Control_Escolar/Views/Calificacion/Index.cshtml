@@ -1,0 +1,59 @@
+﻿
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tablaCalificaciones").DataTable();
+        });
+
+        function agregarCalificacion() {
+            //Hacemos una redireccion a
+            document.location = "/Calificacion/Add/";
+        }
+
+        function editarCalificacion(idCalificacion) {
+            //Hacemos una redireccion a
+            document.location = "/Calificacion/Edit/" + idCalificacion;
+        }
+
+        function borrarCalificacion(idCalificacion) {
+            console.log(idCalificacion);
+            document.location = "/Calificacion/Delete/" + idCalificacion;
+        }
+    </script>
+    <h1>Administración de Calificaciones</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-6 bg-light text-right">
+        </div>
+        <div class="col-md-2 bg-light text-right">
+            <input type="button" value="Agregar Calificacion" onclick="agregarCalificacion()" />
+        </div>
+        <div class="col-md-4 bg-light text-right">
+            @Html.Partial("~/Views/Shared/Buscador.cshtml")
+        </div>
+    </div>
+    <br />
+
+    <table id="tablaCalificaciones" class="display" style="width:90%;margin-left:auto;scroll-margin-right:auto;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Valor</th>
+                <th>Controles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var calificacion in ViewData["catalogoCalificaciones"] as List<Control_Escolar.Models.Calificacion>)
+            {
+                <tr>
+                    <td>@calificacion.ID</td>
+                    <td>@calificacion.Valor</td>
+                    <td>
+                        <input type="button" value="Editar" onclick="editarCalificacion('@calificacion.ID')" />
+                        <input type="button" value="Borrar" onclick="borrarCalificacion('@calificacion.ID')" />
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>

@@ -25,15 +25,18 @@ namespace ControlEscolaApi.Model
         public DbSet<UsuarioAsignatura> UsuarioAsignatura { get; set; }
         public DbSet<UsuarioCarrera> UsuarioCarrera{ get; set; }
         public DbSet<UsuarioCurso> UsuarioCurso{ get; set; }
+        public DbSet<Calificacion> Calificacion { get; set; }
+        public DbSet<CalificacionCursoUsuario> CalificacionCursoUsuario { get; set; }
 
-protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CarreraEscuela>().HasKey(t => new { t.IdCarrera, t.IdEscuela});
             modelBuilder.Entity<AsignaturaCarrera>().HasKey(t => new { t.IdAsignatura, t.IdCarrera });
             modelBuilder.Entity<UsuarioAsignatura>().HasKey(t => new { t.IdUsuario, t.IdAsignatura });
             modelBuilder.Entity<UsuarioCarrera>().HasKey(t => new { t.IdUsuario, t.IdCarrera });
             modelBuilder.Entity<UsuarioCurso>().HasKey(t => new { t.IdUsuario, t.IdCurso });
-            
+            modelBuilder.Entity<CalificacionCursoUsuario>().HasKey(t => new { t.IdUsuario, t.IdCurso, t.IdCalificacion });
+
             base.OnModelCreating(modelBuilder);
         }
     }

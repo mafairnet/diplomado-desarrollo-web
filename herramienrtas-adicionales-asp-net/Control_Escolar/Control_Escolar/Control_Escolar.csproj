@@ -121,6 +121,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccionController.cs" />
+    <Compile Include="Controllers\CalificacionController.cs" />
+    <Compile Include="Controllers\CalificacionCursoUsuarioController.cs" />
     <Compile Include="Controllers\UsuarioCursoController.cs" />
     <Compile Include="Controllers\UsuarioAsignaturaController.cs" />
     <Compile Include="Controllers\UsuarioCarreraController.cs" />
@@ -145,6 +147,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Asignatura.cs" />
+    <Compile Include="Models\Calificacion.cs" />
+    <Compile Include="Models\CalificacionCursoUsuario.cs" />
     <Compile Include="Models\UsuariosCurso.cs" />
     <Compile Include="Models\UsuarioCarrera.cs" />
     <Compile Include="Models\UsuarioAsignatura.cs" />
@@ -248,6 +252,10 @@
     <Content Include="Views\UsuarioCarrera\Add.cshtml" />
     <Content Include="Views\UsuarioCarrera\Delete.cshtml" />
     <Content Include="Views\UsuarioCarrera\Index.cshtml" />
+    <Content Include="Views\Calificacion\Add.cshtml" />
+    <Content Include="Views\Calificacion\Delete.cshtml" />
+    <Content Include="Views\Calificacion\Edit.cshtml" />
+    <Content Include="Views\Calificacion\Index.cshtml" />
     <None Include="Views\Pais\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -294,6 +302,9 @@
     <Content Include="Views\UsuarioCurso\Add.cshtml" />
     <Content Include="Views\UsuarioCurso\Delete.cshtml" />
     <Content Include="Views\UsuarioCurso\Index.cshtml" />
+    <Content Include="Views\CalificacionCursoUsuario\Add.cshtml" />
+    <Content Include="Views\CalificacionCursoUsuario\Delete.cshtml" />
+    <Content Include="Views\CalificacionCursoUsuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

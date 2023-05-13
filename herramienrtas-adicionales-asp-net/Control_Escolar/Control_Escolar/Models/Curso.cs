@@ -19,6 +19,7 @@ namespace Control_Escolar.Models
         public int IdAsignatura { get; set; }
         public Periodo Periodo { get; set; }
         public Asignatura Asignatura { get; set; }
+        public List<Usuario> Usuarios { get; set; }
         #endregion
 
     }

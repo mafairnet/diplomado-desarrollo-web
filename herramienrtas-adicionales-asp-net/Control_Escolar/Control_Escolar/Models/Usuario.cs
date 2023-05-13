@@ -50,6 +50,7 @@ namespace Control_Escolar.Models
         public List<Asignatura> Asignaturas {get; set;}
         public List<Carrera> Carreras { get; set; }
         public List<Curso> Cursos { get; set; }
+        public Calificacion CalificacionCurso { get; set; } 
         #endregion
     }
 }

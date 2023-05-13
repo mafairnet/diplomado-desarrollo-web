@@ -18,6 +18,10 @@
             console.log(idCurso);
             document.location = "/Curso/Delete/" + idCurso;
         }
+        function calificacionesCurso(idCurso) {
+            console.log(idCurso);
+            document.location = "/CalificacionCursoUsuario/Index/" + idCurso;
+        }
     </script>
     <h1>Administración de Cursos</h1>
     <br />
@@ -54,6 +58,7 @@
                     <td>
                         <input type="button" value="Editar" onclick="editarCurso('@curso.ID')" />
                         <input type="button" value="Borrar" onclick="borrarCurso('@curso.ID')" />
+                        <input type="button" value="Calificaciones" onclick="calificacionesCurso('@curso.ID')" />
                     </td>
                 </tr>
             }

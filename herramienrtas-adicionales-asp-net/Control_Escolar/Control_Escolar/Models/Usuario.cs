@@ -47,6 +47,9 @@ namespace Control_Escolar.Models
         public int IdStatus { get; set; }
         public Status Status { get; set; }
         public Ubicacion Ubicacion { get; set; }
+        public List<Asignatura> Asignaturas {get; set;}
+        public List<Carrera> Carreras { get; set; }
+        public List<Curso> Cursos { get; set; }
         #endregion
     }
 }

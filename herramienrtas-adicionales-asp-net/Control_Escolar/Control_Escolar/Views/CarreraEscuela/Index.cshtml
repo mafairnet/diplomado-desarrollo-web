@@ -1,0 +1,60 @@
+﻿@model Control_Escolar.Models.Escuela
+@{
+    var escuela = ViewData["escuela"] as Control_Escolar.Models.Escuela;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tablaEscuelas").DataTable();
+    });
+
+    function agregarCarrera(idEscuela) {
+        //Hacemos una redireccion a
+        document.location = "/CarreraEscuela/Add/" + idEscuela;
+    }
+
+    function borrarCarrera(idEscuela, idCarrera) {
+        console.log("Escuela: " + idEscuela + "," + "Carrera: " + idCarrera);
+        document.location = "/CarreraEscuela/Delete/" + idEscuela + "_" + idCarrera;
+    }
+</script>
+<h1>Escuela: @escuela.Nombre</h1>
+<h4>Asignacion de Carreras </h4>
+<br />
+<div class="row">
+    <div class="col-md-6 bg-light text-right">
+    </div>
+    <div class="col-md-2 bg-light text-right">
+        <input type="button" value="Agregar Carrera" onclick="agregarCarrera(@escuela.ID)" />
+    </div>
+    <div class="col-md-4 bg-light text-right">
+        @Html.Partial("~/Views/Shared/Buscador.cshtml")
+    </div>
+</div>
+<br />
+
+<table id="tablaEscuelas" class="display" style="width:90%;margin-left:auto;scroll-margin-right:auto;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Status</th>
+            <th>Controles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carrera in escuela.Carreras as List<Control_Escolar.Models.Carrera>)
+        {
+            <tr>
+                <td>@carrera.ID</td>
+                <td>@carrera.Nombre</td>
+                <td>@carrera.Status.Nombre</td>
+                <td>
+                    <input type="button" value="Borrar" onclick="borrarCarrera(@escuela.ID,@carrera.ID)" />
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

@@ -62,7 +62,7 @@
     <div class="form-group">
         @Html.LabelFor(model => bitacora.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Usuario.ID, ViewBag.acciones as SelectList, new { @class = "form-control", @onChange = "setUsuario()" })
+            @Html.DropDownListFor(model => model.Usuario.ID, ViewBag.usuarios as SelectList, new { @class = "form-control", @onChange = "setUsuario()" })
             @Html.ValidationMessageFor(model => bitacora.Usuario.ID, "", new { @class = "text-danger" })
         </div>
     </div>

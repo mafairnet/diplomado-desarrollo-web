@@ -20,5 +20,21 @@ namespace ControlEscolaApi.Model
         public DbSet<Bitacora> Bitacora { get; set; }
         public DbSet<Asignatura> Asignatura { get; set; }
         public DbSet<Carrera> Carrera { get; set; }
+        public DbSet<CarreraEscuela> CarreraEscuela { get; set; }
+        public DbSet<AsignaturaCarrera> AsignaturaCarrera { get; set; }
+        public DbSet<UsuarioAsignatura> UsuarioAsignatura { get; set; }
+        public DbSet<UsuarioCarrera> UsuarioCarrera{ get; set; }
+        public DbSet<UsuarioCurso> UsuarioCurso{ get; set; }
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CarreraEscuela>().HasKey(t => new { t.IdCarrera, t.IdEscuela});
+            modelBuilder.Entity<AsignaturaCarrera>().HasKey(t => new { t.IdAsignatura, t.IdCarrera });
+            modelBuilder.Entity<UsuarioAsignatura>().HasKey(t => new { t.IdUsuario, t.IdAsignatura });
+            modelBuilder.Entity<UsuarioCarrera>().HasKey(t => new { t.IdUsuario, t.IdCarrera });
+            modelBuilder.Entity<UsuarioCurso>().HasKey(t => new { t.IdUsuario, t.IdCurso });
+            
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -179,7 +179,7 @@ namespace Control_Escolar.Controllers
             }
 
             ViewData["catalogoPeriodos"] = catalogoPeriodos;
-            ViewBag.periodoes = new SelectList(catalogoPeriodos, "id", "nombre");
+            ViewBag.periodos = new SelectList(catalogoPeriodos, "id", "nombre");
 
             ViewData["catalogoAsignaturas"] = catalogoAsignaturas;
             ViewBag.asignaturas = new SelectList(catalogoAsignaturas, "id", "nombre");
@@ -314,7 +314,7 @@ namespace Control_Escolar.Controllers
             }
 
             ViewData["catalogoPeriodos"] = catalogoPeriodos;
-            ViewBag.periodoes = new SelectList(catalogoPeriodos, "id", "nombre");
+            ViewBag.periodos = new SelectList(catalogoPeriodos, "id", "nombre");
 
             ViewData["catalogoAsignaturas"] = catalogoAsignaturas;
             ViewBag.asignaturas = new SelectList(catalogoAsignaturas, "id", "nombre");
@@ -451,7 +451,7 @@ namespace Control_Escolar.Controllers
             }
 
             ViewData["catalogoPeriodos"] = catalogoPeriodos;
-            ViewBag.periodoes = new SelectList(catalogoPeriodos, "id", "nombre");
+            ViewBag.periodos = new SelectList(catalogoPeriodos, "id", "nombre");
 
             ViewData["catalogoAsignaturas"] = catalogoAsignaturas;
             ViewBag.asignaturas = new SelectList(catalogoAsignaturas, "id", "nombre");

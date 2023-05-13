@@ -1,0 +1,47 @@
+﻿@model Control_Escolar.Models.AsignaturaCarrera
+@{
+    var carrera = ViewData["carrera"] as Control_Escolar.Models.Carrera;
+    var asignaturaCarrera = ViewData["asignaturaCarrera"] as Control_Escolar.Models.AsignaturaCarrera;
+}
+
+<script type="text/javascript">
+
+    function setAsignatura() {
+        var idAsignatura = $('select[name="asignaturaCarrera.IdAsignatura"]').val();
+        console.log("Asignatura Seleccionado: " + idAsignatura);
+        $("#asignaturaCarrera_IdAsignatura").val(idAsignatura);
+    }
+</script>
+
+    <h1>Agregar Asignatura</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Carrera: @carrera.ID, @carrera.Nombre</h4>
+    <hr />
+    @Html.HiddenFor(model => asignaturaCarrera.IdCarrera)
+
+    
+    @Html.HiddenFor(model => asignaturaCarrera.IdAsignatura)
+
+    <div class="form-group">
+        @Html.LabelFor(model => asignaturaCarrera.IdAsignatura, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => asignaturaCarrera.IdAsignatura, ViewBag.asignaturas as SelectList, new { @class = "form-control", @onChange = "setAsignatura()" })
+            @Html.ValidationMessageFor(model => asignaturaCarrera.IdAsignatura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

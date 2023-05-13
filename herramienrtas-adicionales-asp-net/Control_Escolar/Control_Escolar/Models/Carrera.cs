@@ -16,6 +16,7 @@ namespace Control_Escolar.Models
         [JsonProperty("idStatus")]
         public int IdStatus { get; set; }
         public Status Status { get; set; }
+        public List<Asignatura> Asignaturas { get; set; }
         #endregion
     }
 }

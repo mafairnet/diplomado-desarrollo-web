@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,10 @@ namespace Control_Escolar.Models
     public class AsignaturaCarrera
     {
         #region Atributos
-        public Asignatura Asignatura { get; set; }
-        public Carrera Carrera { get; set; }
+        [JsonProperty("idAsignatura")]
+        public int? IdAsignatura { get; set; }
+        [JsonProperty("idCarrera")]
+        public int? IdCarrera { get; set; }
         #endregion
     }
 }

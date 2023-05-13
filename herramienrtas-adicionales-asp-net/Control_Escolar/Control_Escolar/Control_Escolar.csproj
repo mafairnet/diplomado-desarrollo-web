@@ -121,8 +121,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccionController.cs" />
+    <Compile Include="Controllers\UsuarioCursoController.cs" />
+    <Compile Include="Controllers\UsuarioAsignaturaController.cs" />
+    <Compile Include="Controllers\UsuarioCarreraController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\AsignaturaController.cs" />
+    <Compile Include="Controllers\AsignaturaCarreraController.cs" />
+    <Compile Include="Controllers\CarreraEscuelaController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\EscuelaController.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
@@ -140,9 +145,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Asignatura.cs" />
+    <Compile Include="Models\UsuariosCurso.cs" />
+    <Compile Include="Models\UsuarioCarrera.cs" />
+    <Compile Include="Models\UsuarioAsignatura.cs" />
     <Compile Include="Models\AsignaturaCarrera.cs" />
     <Compile Include="Models\Accion.cs" />
     <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\CarreraEscuela.cs" />
     <Compile Include="Models\Escuela.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Calle.cs" />
@@ -230,6 +239,15 @@
     <Content Include="Views\Bitacora\Delete.cshtml" />
     <Content Include="Views\Bitacora\Edit.cshtml" />
     <Content Include="Views\Bitacora\Index.cshtml" />
+    <Content Include="Views\CarreraEscuela\Add.cshtml" />
+    <Content Include="Views\CarreraEscuela\Delete.cshtml" />
+    <Content Include="Views\CarreraEscuela\Index.cshtml" />
+    <Content Include="Views\AsignaturaCarrera\Add.cshtml" />
+    <Content Include="Views\AsignaturaCarrera\Delete.cshtml" />
+    <Content Include="Views\AsignaturaCarrera\Index.cshtml" />
+    <Content Include="Views\UsuarioCarrera\Add.cshtml" />
+    <Content Include="Views\UsuarioCarrera\Delete.cshtml" />
+    <Content Include="Views\UsuarioCarrera\Index.cshtml" />
     <None Include="Views\Pais\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -253,7 +271,6 @@
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Estado\Add.cshtml" />
     <Content Include="Views\Estado\Delete.cshtml" />
-    <Content Include="Views\Estado\Edit.cshtml" />
     <Content Include="Views\Estado\Index.cshtml" />
     <Content Include="Views\Municipio\Add.cshtml" />
     <Content Include="Views\Municipio\Delete.cshtml" />
@@ -271,6 +288,12 @@
     <Content Include="Views\Ubicacion\Delete.cshtml" />
     <Content Include="Views\Ubicacion\Edit.cshtml" />
     <Content Include="Views\Ubicacion\Index.cshtml" />
+    <Content Include="Views\UsuarioAsignatura\Add.cshtml" />
+    <Content Include="Views\UsuarioAsignatura\Delete.cshtml" />
+    <Content Include="Views\UsuarioAsignatura\Index.cshtml" />
+    <Content Include="Views\UsuarioCurso\Add.cshtml" />
+    <Content Include="Views\UsuarioCurso\Delete.cshtml" />
+    <Content Include="Views\UsuarioCurso\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

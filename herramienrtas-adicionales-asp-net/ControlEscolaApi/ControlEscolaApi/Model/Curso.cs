@@ -9,8 +9,8 @@ namespace ControlEscolaApi.Model
         public int ID { get; set; }
         [Column("nombre")]
         public string? Nombre { get; set; }
-        [Column("id_perido")]
-        public int? IdPeriod { get; set; }
+        [Column("id_periodo")]
+        public int? IdPeriodo { get; set; }
         [Column("id_asignatura")]
         public int? IdAsignatura { get; set; }
         #endregion

@@ -18,6 +18,11 @@
             console.log(idCarrera);
             document.location = "/Carrera/Delete/" + idCarrera;
         }
+
+        function asignaturasCarrera(idCarrera) {
+            console.log(idCarrera);
+            document.location = "/AsignaturaCarrera/Index/" + idCarrera;
+        }
     </script>
     <h1>Administración de Carreras</h1>
     <br />
@@ -52,6 +57,7 @@
                     <td>
                         <input type="button" value="Editar" onclick="editarCarrera('@carrera.ID')" />
                         <input type="button" value="Borrar" onclick="borrarCarrera('@carrera.ID')" />
+                        <input type="button" value="Asignaturas" onclick="asignaturasCarrera('@carrera.ID')" />
                     </td>
                 </tr>
             }

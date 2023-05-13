@@ -18,6 +18,21 @@
             console.log(idUsuario);
             document.location = "/Usuario/Delete/" + idUsuario;
         }
+
+        function carrerasUsuario(idUsuario) {
+            console.log(idUsuario);
+            document.location = "/UsuarioCarrera/Index/" + idUsuario;
+        }
+
+        function asignaturasUsuario(idUsuario) {
+            console.log(idUsuario);
+            document.location = "/UsuarioAsignatura/Index/" + idUsuario;
+        }
+
+        function cursosUsuario(idUsuario) {
+            console.log(idUsuario);
+            document.location = "/UsuarioCurso/Index/" + idUsuario;
+        }
     </script>
     <h1>Administración de Usuarios</h1>
     <br />
@@ -66,6 +81,9 @@
                     <td>
                         <input type="button" value="Editar" onclick="editarUsuario('@usuario.ID')" />
                         <input type="button" value="Borrar" onclick="borrarUsuario('@usuario.ID')" />
+                        <input type="button" value="Carreras" onclick="carrerasUsuario('@usuario.ID')" />
+                        <input type="button" value="Asignaturas" onclick="asignaturasUsuario('@usuario.ID')" />
+                        <input type="button" value="Cursos" onclick="cursosUsuario('@usuario.ID')" />
                     </td>
                 </tr>
             }

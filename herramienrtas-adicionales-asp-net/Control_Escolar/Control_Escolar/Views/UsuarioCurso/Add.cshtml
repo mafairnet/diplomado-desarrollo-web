@@ -1,0 +1,47 @@
+﻿@model Control_Escolar.Models.UsuarioCurso
+@{
+    var usuario = ViewData["usuario"] as Control_Escolar.Models.Usuario;
+    var usuarioCurso = ViewData["usuarioCurso"] as Control_Escolar.Models.UsuarioCurso;
+}
+
+<script type="text/javascript">
+
+    function setCurso() {
+        var idCurso = $('select[name="usuarioCurso.IdCurso"]').val();
+        console.log("Curso Seleccionado: " + idCurso);
+        $("#usuarioCurso_IdCurso").val(idCurso);
+    }
+</script>
+
+    <h1>Agregar Curso</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Curso: @usuario.ID, @usuario.Correo</h4>
+    <hr />
+    @Html.HiddenFor(model => usuarioCurso.IdUsuario)
+
+    
+    @Html.HiddenFor(model => usuarioCurso.IdCurso)
+
+    <div class="form-group">
+        @Html.LabelFor(model => usuarioCurso.IdCurso, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => usuarioCurso.IdCurso, ViewBag.cursos as SelectList, new { @class = "form-control", @onChange = "setCurso()" })
+            @Html.ValidationMessageFor(model => usuarioCurso.IdCurso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class=" btn-default" />
+        </div>
+    </div>
+
+</div>
+        //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+    }

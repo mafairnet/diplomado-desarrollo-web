@@ -7,7 +7,7 @@ namespace ControlEscolaApi.Model
         #region Atributos
         [Column("id")]
         public int ID { get; set; }
-        [Column("nombre")]
+        [Column("timestamp")]
         public DateTime? TimeStamp { get; set; }
         [Column("id_accion")]
         public int? IdAccion { get; set; }

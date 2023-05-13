@@ -103,6 +103,10 @@ namespace Control_Escolar.Controllers
                     }
                 }
 
+                var newUsuario = new Usuario();
+                newUsuario.Correo = "No definido";
+                bitacora.Usuario = newUsuario;
+
                 foreach (Usuario usuario in catalogoUsuarios)
                 {
                     if (bitacora.IdUsuario == usuario.ID)
@@ -116,7 +120,7 @@ namespace Control_Escolar.Controllers
             ViewBag.acciones = new SelectList(catalogoAcciones, "id", "nombre");
 
             ViewData["catalogoUsuarios"] = catalogoUsuarios;
-            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "nombre");
+            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "correo");
 
             ViewData["catalogoBitacoras"] = catalogoBitacoras;
             return View();
@@ -178,7 +182,7 @@ namespace Control_Escolar.Controllers
             ViewBag.acciones = new SelectList(catalogoAcciones, "id", "nombre");
 
             ViewData["catalogoUsuarios"] = catalogoUsuarios;
-            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "nombre");
+            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "correo");
 
             ViewData["bitacora"] = bitacora;
             return View();
@@ -313,7 +317,7 @@ namespace Control_Escolar.Controllers
             ViewBag.acciones = new SelectList(catalogoAcciones, "id", "nombre");
 
             ViewData["catalogoUsuarios"] = catalogoUsuarios;
-            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "nombre");
+            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "correo");
 
             ViewData["bitacora"] = bitacora;
             return View();
@@ -450,7 +454,7 @@ namespace Control_Escolar.Controllers
             ViewBag.acciones = new SelectList(catalogoAcciones, "id", "nombre");
 
             ViewData["catalogoUsuarios"] = catalogoUsuarios;
-            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "nombre");
+            ViewBag.usuarios = new SelectList(catalogoUsuarios, "id", "correo");
 
             ViewData["bitacora"] = bitacora;
             return View();

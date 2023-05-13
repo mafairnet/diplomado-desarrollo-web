@@ -19,6 +19,7 @@ namespace Control_Escolar.Models
         public int IdStatus { get; set; }
         public Ubicacion Ubicacion { get; set; }
         public Status Status { get; set; }
+        public List<Carrera> Carreras {get; set;}
         #endregion
 
     }

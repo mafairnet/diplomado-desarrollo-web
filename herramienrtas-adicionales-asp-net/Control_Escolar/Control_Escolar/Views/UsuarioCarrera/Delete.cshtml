@@ -1,0 +1,57 @@
+﻿@model Control_Escolar.Models.UsuarioCarrera
+
+@{
+    var usuario = ViewData["usuario"] as Control_Escolar.Models.Usuario;
+    var usuarioCarrera = ViewData["usuarioCarrera"] as Control_Escolar.Models.UsuarioCarrera;
+}
+
+<script type="text/javascript">
+
+    function setCarrera() {
+        var idCarrera = $('select[name="usuarioCarrera.IdCarrera"]').val();
+        console.log("Carrera Seleccionado: " + idCarrera);
+        $("#usuarioCarrera_IdCarrera").val(idCarrera);
+    }
+
+    $(document).ready(function () {
+        console.log("Modificado Carrera");
+        var idCarrera = $("#usuarioCarrera_IdCarrera").val();
+        $('select[name="usuarioCarrera.IdCarrera"]').val(idCarrera);
+
+    });
+</script>
+
+<h1>Borrar Carrera</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Usuario: @usuario.ID, @usuario.Correo</h4>
+        <hr />
+        @Html.HiddenFor(model => usuarioCarrera.IdUsuario)
+
+
+        @Html.HiddenFor(model => usuarioCarrera.IdCarrera)
+
+        <div class="form-group">
+            @Html.LabelFor(model => usuarioCarrera.IdCarrera, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => usuarioCarrera.IdCarrera, ViewBag.carreras as SelectList, new { @class = "form-control", @onChange = "setCarrera()" })
+                @Html.ValidationMessageFor(model => usuarioCarrera.IdCarrera, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+
+        <h4>¿Seguro que desea borrar la carrera?</h4>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Borrar" class=" btn-default" />
+            </div>
+        </div>
+
+    </div>
+    //@Html.Action("Regresar al catalogo de Usuarios", "Index")
+}
